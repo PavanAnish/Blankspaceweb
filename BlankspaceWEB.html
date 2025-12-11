@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title> BLANKSPACE</title>
+
+  <!-- Font (swap if you use your brand font) -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --purple-1: #0f193f;    /* deep left */
+      --purple-2: #6b3fa5;    /* mid */
+      --purple-3: #b17cf3;    /* right highlight */
+      --accent: #d8a3ff;
+      --card-bg: #fff;
+      --max-w: 1200px;
+      --gap: 28px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Montserrat, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color:#111;
+      background:#fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* NAV */
+    .nav-wrap{
+      position:sticky;
+      top:0;
+      z-index:40;
+      background:linear-gradient(180deg, rgba(18,6,49,0.92), rgba(21,8,61,0.85));
+      border-bottom:4px solid rgba(191,102,230,0.15);
+    }
+    .nav{
+      max-width:var(--max-w);
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:12px 20px;
+    }
+    .brand {
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    
+    .brand img.logo {
+    height:50px;       /* adjust to whatever size looks best */
+    width:auto;        /* preserves the logo's natural aspect ratio */
+    object-fit:contain;
+    border-radius:0;   /* remove rounding so your real logo corners show */
+    background:none;   /* remove any leftover gradient or background */
+    }
+
+    .brand .title{
+      color:#fff;
+      font-weight:700;
+      letter-spacing:0.6px;
+      font-size:18px;
+    }
+    .nav-right{
+      margin-left:auto;
+      display:flex;
+      gap:18px;
+      align-items:center;
+    }
+    .nav-right a{
+      color:#e9d8ff;
+      text-decoration:none;
+      font-size:14px;
+      font-weight:500;
+    }
+
+    /* HERO (big purple gradient) */
+    .hero-outer{
+      background: linear-gradient(120deg, var(--purple-1) 0%, var(--purple-2) 45%, var(--purple-3) 100%);
+      color: #fff;
+    }
+    .hero{
+      max-width:var(--max-w);
+      margin:0 auto;
+      padding:88px 20px 60px;
+      display:flex;
+      gap:var(--gap);
+      align-items:flex-start;
+      min-height:420px;
+      position:relative;
+      overflow:visible;
+    }
+
+    .hero-left{
+      flex:1;
+      max-width:740px;
+    }
+    .hero-left .eyebrow{
+      font-size:18px;
+      opacity:0.95;
+      margin-bottom:18px;
+      font-weight:300;
+    }
+    .hero-left h1{
+      margin:0 0 12px 0;
+      font-size:64px;
+      line-height:0.95;
+      font-weight:800;
+      letter-spacing:1px;
+      color:rgba(255,255,255,0.98);
+    }
+    .hero-left p{
+      margin:0 0 24px 0;
+      color:rgba(255,255,255,0.9);
+      max-width:620px;
+      font-size:16px;
+      font-weight:400;
+    }
+    .hero-cta{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .btn{
+      padding:12px 18px;
+      border-radius:8px;
+      border:none;
+      cursor:pointer;
+      font-weight:700;
+      font-size:14px;
+    }
+    .btn-primary{
+      background:rgba(255,255,255,0.95);
+      color:var(--purple-2);
+    }
+    .btn-outline{
+      background:transparent;
+      color:#fff;
+      border:2px solid rgba(255,255,255,0.14);
+    }
+
+    /* horizontal thin divider (like screenshot) */
+    .hero-divider{
+      width:100%;
+      height:8px;
+      background:linear-gradient(90deg, rgba(0,0,0,0.06), rgba(255,255,255,0.04));
+      margin-top:18px;
+      opacity:0.35;
+    }
+
+    /* decorative right panel (semi-card to emulate right column) */
+    .hero-right{
+      width:360px;
+      min-width:220px;
+      align-self:stretch;
+      display:flex;
+      justify-content:center;
+      position:relative;
+      z-index:2;
+    }
+    .panel{
+      background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(245,240,255,0.95));
+      border-radius:8px;
+      width:100%;
+      padding:22px;
+      box-shadow:0 18px 40px rgba(7,3,20,0.45);
+      color:var(--purple-2);
+      font-weight:600;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      transform:translateY(40px);
+    }
+    .panel small{font-weight:500;color:var(--purple-2);opacity:0.9}
+
+    /* decorative stacked icon (floating) */
+    .stack-visual{
+      position:absolute;
+      right:6%;
+      top:22%;
+      width:420px;
+      height:220px;
+      transform:rotate(-10deg);
+      opacity:0.95;
+      pointer-events:none;
+      filter:drop-shadow(0 36px 36px rgba(20,10,40,0.32));
+    }
+
+    /* SECTION 2: features cards row */
+    .section-feat{
+      max-width:var(--max-w);
+      margin:40px auto;
+      padding:42px 20px 80px;
+    }
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:28px;
+      align-items:start;
+    }
+    .card{
+      background:var(--card-bg);
+      padding:28px;
+      border-radius:8px;
+      box-shadow:0 18px 40px rgba(9,7,24,0.08);
+      text-align:center;
+      min-height:220px;
+    }
+    .card img{width:72px;height:72px;margin-bottom:16px}
+    .card h4{margin:6px 0 10px;font-size:18px;color:#2b1b4a}
+    .card p{margin:0;color:#4a3b66;font-size:14px;line-height:1.5}
+
+    /* FOOTER / CTA */
+    footer{
+      max-width:var(--max-w);
+      margin:0 auto 60px;
+      padding:20px;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
+    }
+    footer .copy{color:#3b2d53;font-size:14px}
+    footer .actions{display:flex;gap:12px}
+
+    /* RESPONSIVE */
+    @media (max-width:1100px){
+      .hero{padding:64px 20px; gap:18px}
+      .hero-left h1{font-size:46px}
+      .hero-right{width:300px}
+      .stack-visual{display:none}
+      .cards{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:720px){
+      .nav-right{display:none}
+      .hero{
+        flex-direction:column;
+        padding:44px 18px;
+        min-height:420px;
+      }
+      .hero-left h1{font-size:32px}
+      .hero-right{width:100%; order:2; transform:none; margin-top:12px}
+      .panel{transform:none}
+      .cards{grid-template-columns:1fr}
+      footer{flex-direction:column;align-items:flex-start}
+    }
+
+    /* small polish */
+    a.skip{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+  </style>
+</head>
+<body>
+
+  <!-- NAV: replace src with your logo URL -->
+  <div class="nav-wrap" role="navigation" aria-label="Main">
+    <div class="nav">
+      <div class="brand">
+        <!-- Replace the src below with your logo link -->
+        <img src="assests/Blankspace.png" class="logo" alt="Blankspace logo">
+
+        <div>
+          <div class="title">BLANKSPACE1</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.6);margin-top:2px">BLANKSPACE</div>
+        </div>
+      </div>
+
+      <div class="nav-right" aria-hidden="false">
+        <a href="#features">Programs</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO with large purple gradient -->
+  <header class="hero-outer" role="banner">
+    <div class="hero">
+      <div class="hero-left">
+        <div class="eyebrow">Welcome to</div>
+        <!-- changed wording to align with your brand -->
+        <h1>BLANKSPACE — Ideas that teach.</h1>
+        <p>We build learning environments, online programs and community tools that help educators scale great teaching. Practical frameworks, research-backed modules and real classroom outcomes.</p>
+
+        <div class="hero-cta">
+          <button class="btn btn-primary" onclick="location.href='#features'">Explore Programs</button>
+          <button class="btn btn-outline" onclick="location.href='#contact'">Join the Community</button>
+        </div>
+
+        <div class="hero-divider" aria-hidden="true"></div>
+      </div>
+
+      <div class="hero-right" aria-hidden="true">
+        <!-- white-ish panel (right column) -->
+        <div class="panel" aria-label="What we do">
+          <small>ACHIEVMENTS</small>
+          <strong>Practical teacher development</strong>
+          <div style="font-size:13px;color:rgba(75,42,110,0.9);margin-top:6px">
+            Short courses • Group coaching • Classroom pilots
+          </div>
+        </div>
+      </div>
+
+      <!-- decorative stacked visual: replace with your image if available -->
+      <svg class="stack-visual" viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="sg" x1="0" x2="1">
+            <stop offset="0" stop-color="#a56ff8" />
+            <stop offset="1" stop-color="#ffb2ff" />
+          </linearGradient>
+        </defs>
+        <g transform="rotate(-12 300 160)">
+          <rect x="10" y="30" rx="20" ry="20" width="300" height="180" fill="url(#sg)" opacity="0.95"/>
+          <rect x="80" y="10" rx="18" ry="18" width="280" height="160" fill="#8e55d7" opacity="0.9"/>
+          <rect x="150" y="-10" rx="16" ry="16" width="260" height="140" fill="#7439b7" opacity="0.85"/>
+        </g>
+      </svg>
+    </div>
+  </header>
+
+  <!-- SECTION 2: Feature cards (3) -->
+  <section id="features" class="section-feat" aria-label="Offerings">
+    <div class="cards">
+      <article class="card" aria-labelledby="c1">
+        <img src="https://via.placeholder.com/72/FF9AB3/FFFFFF?text=✦" alt="">
+        <h4 id="c1">Leadership in Practice</h4>
+        <p>Practical leadership modules for school leaders — coaching, data routines and action plans to improve classroom practice.</p>
+      </article>
+
+      <article class="card" aria-labelledby="c2">
+        <img src="https://via.placeholder.com/72/FF9AB3/FFFFFF?text=☰" alt="">
+        <h4 id="c2">Digital Teaching Tools</h4>
+        <p>Hands-on workshops on integrating technology into lesson design and student assessment without adding teacher load.</p>
+      </article>
+
+      <article class="card" aria-labelledby="c3">
+        <img src="https://via.placeholder.com/72/FF9AB3/FFFFFF?text=⚑" alt="">
+        <h4 id="c3">Classroom Research Labs</h4>
+        <p>Small-scale pilots and measurement frameworks so your team can test curriculum changes and see real impact quickly.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="copy">© <strong>BLANKSPACE</strong> — BLANKSPACE • Designed for educators</div>
+    <div class="actions">
+      <button class="btn btn-outline" onclick="location.href='#about'">About</button>
+      <button class="btn btn-primary" onclick="location.href='#contact'">Contact</button>
+    </div>
+  </footer>
+
+</body>
+</html>
